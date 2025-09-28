@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: common-postgres
+    environment:
+      POSTGRES_DB: common
+      POSTGRES_USER: common
+      POSTGRES_PASSWORD: common
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "1234:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

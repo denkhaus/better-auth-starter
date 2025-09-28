@@ -39,7 +39,7 @@ A modern, production-ready Next.js boilerplate with comprehensive authentication
 - **UI Components:** Radix UI
 - **Form Handling:** React Hook Form
 - **Validation:** Zod
-- **Email:** Resend
+- **Email:** Brevo
 - **TypeScript:** Full type safety
 
 ## 🚀 Quick Start

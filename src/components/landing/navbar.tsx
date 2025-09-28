@@ -16,6 +16,8 @@ import { Badge } from "@/components/ui/badge";
 import { LogOut, Shield, User } from "lucide-react";
 import Image from "next/image";
 
+import { ThemeToggle } from "../ui/ThemeToggle";
+
 const Navbar = () => {
   const { signOut, useSession } = authClient;
   const { data: session } = useSession();
@@ -54,6 +56,7 @@ const Navbar = () => {
 
         {/* Right Side */}
         <div className="flex items-center gap-4">
+          <ThemeToggle />
           {!session ? (
             <div className="flex items-center gap-2">
               <Link href="/auth/register">
