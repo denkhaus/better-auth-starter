@@ -2,14 +2,14 @@
 
 import { z } from "zod";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/routing";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import React, { useId, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginUser } from "../../app/auth/login/action";
+import { loginUser } from "@/app/[locale]/auth/login/action";
 import { FormSuccess, FormError } from "../ui/form-messages";
 
 const schema = z.object({

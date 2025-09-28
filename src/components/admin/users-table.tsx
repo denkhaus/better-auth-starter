@@ -14,7 +14,8 @@ import {
 import { format } from "date-fns";
 import useSWR from "swr";
 import { useState, useEffect, useMemo } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "@/i18n/routing";
+import { useSearchParams } from "next/navigation";
 
 import {
   Table,

@@ -1,6 +1,6 @@
 # Tasks: Implement Dark Mode
 
-**Input**: Design documents from `/specs/001-implementiere-dark-mode/`
+**Input**: Design documents from `/specs/001-implement-dark-mode/`
 
 ## Phase 3.1: Setup
 - [X] T001 [P] Install Zustand for state management: `npm install zustand`

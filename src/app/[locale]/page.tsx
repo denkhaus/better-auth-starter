@@ -7,68 +7,89 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Shield, Users, Database, Palette } from "lucide-react";
-import Link from "next/link";
+import { Shield, Users, Database, Palette, Globe } from "lucide-react";
 import { Hero } from "@/components/ui/animated-hero";
+import { getTranslations } from 'next-intl/server';
+import { Link } from "@/i18n/routing";
 
-const HomePage = () => {
+type Props = {
+  params: Promise<{ locale: string }>;
+};
+
+const HomePage = async ({ params }: Props) => {
+  const resolvedParams = await params;
+  const { locale } = resolvedParams;
+  const t = await getTranslations({ locale, namespace: 'common' }); // Using 'common' namespace from our translation files
+
   const features = [
     {
-      icon: <Shield className="h-5 w-5" />,
-      title: "Authentication & Authorization",
-      description:
-        "Complete auth system with email verification, password reset, and role-based access control.",
+      icon: <Globe className="h-5 w-5" />,
+      title: t('internationalization_feature'),
+      description: t('feature_description'),
       items: [
-        "Email & Password Auth",
-        "Session Management",
-        "Role-based Access",
-        "Account Linking",
+        t('language'),
+        t('switch_language'),
+        t('feature_ui_title'), // Responsive UI support
+        t('feature_mobile_responsive'),
+      ],
+    },
+    {
+      icon: <Shield className="h-5 w-5" />,
+      title: t('feature_auth_title'),
+      description: t('feature_auth_desc'),
+      items: [
+        t('feature_email_auth'),
+        t('feature_session_mgmt'),
+        t('feature_role_access'),
+        t('feature_account_linking'),
       ],
     },
     {
       icon: <Users className="h-5 w-5" />,
-      title: "User Management",
-      description:
-        "Comprehensive user administration with advanced controls and audit capabilities.",
+      title: t('feature_user_mgmt_title'),
+      description: t('feature_user_mgmt_desc'),
       items: [
-        "User Registration",
-        "Profile Management",
-        "Ban/Unban Users",
-        "Session Revocation",
+        t('feature_user_reg'),
+        t('feature_profile_mgmt'),
+        t('feature_ban_users'),
+        t('feature_session_revocation'),
       ],
     },
     {
       icon: <Database className="h-5 w-5" />,
-      title: "Database & ORM",
-      description:
-        "Modern database setup with type-safe queries and automated migrations.",
+      title: t('feature_db_title'),
+      description: t('feature_db_desc'),
       items: [
-        "PostgreSQL",
-        "Drizzle ORM",
-        "Type Safety",
-        "Automated Migrations",
+        t('feature_postgresql'),
+        t('feature_drizzle'),
+        t('feature_type_safe'),
+        t('feature_auto_migrations'),
       ],
     },
     {
       icon: <Palette className="h-5 w-5" />,
-      title: "Modern UI/UX",
-      description:
-        "Beautiful, responsive design system with accessibility built-in.",
-      items: ["Tailwind CSS", "shadcn ui", "Dark Mode", "Mobile Responsive"],
+      title: t('feature_ui_title'),
+      description: t('feature_ui_desc'),
+      items: [
+        t('feature_tailwind'),
+        t('feature_shadcn'),
+        t('feature_dark_mode'),
+        t('feature_mobile_responsive'),
+      ],
     },
   ];
 
   const techStack = [
-    "Next.js 15",
-    "Better Auth",
-    "PostgreSQL",
-    "Drizzle ORM",
-    "Tailwind CSS",
-    "shadcn ui",
-    "TypeScript",
-    "React Hook Form",
-    "Zod",
-    "Brevo",
+    t('tech_nextjs'),
+    t('tech_better_auth'),
+    t('tech_postgresql'),
+    t('tech_drizzle'),
+    t('tech_tailwind'),
+    t('tech_shadcn'),
+    t('tech_typescript'),
+    t('tech_hook_form'),
+    t('tech_zod'),
+    t('tech_brevo'),
   ];
 
   return (
@@ -114,10 +135,9 @@ const HomePage = () => {
         {/* Tech Stack */}
         <Card>
           <CardHeader>
-            <CardTitle>Tech Stack</CardTitle>
+            <CardTitle>{t('tech_stack_title')}</CardTitle>
             <CardDescription>
-              Built with modern technologies for performance, security, and
-              developer experience
+              {t('tech_stack_desc')}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -134,7 +154,7 @@ const HomePage = () => {
         {/* Footer */}
         <div className="text-center mt-12 pt-8 border-t border-border/50">
           <p className="text-muted-foreground">
-            Built with ❤️ by{" "}
+            {t('built_with')}{" "}
             <Link
               href="https://zexa.app"
               target="_blank"

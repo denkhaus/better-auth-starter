@@ -1,8 +1,8 @@
 
 # Implementation Plan: [FEATURE]
 
-**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
-**Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
+**Branch**: `002-swap-resend-against-brevo` | **Date**: [DATE] | **Spec**: [link]
+**Input**: Feature specification from `/specs/002-swap-resend-against-brevo/spec.md`
 
 ## Execution Flow (/plan command scope)
 ```
@@ -34,14 +34,14 @@
 [Extract from feature spec: primary requirement + technical approach from research]
 
 ## Technical Context
-**Language/Version**: TypeScript, Node.js  
-**Primary Dependencies**: @getbrevo/brevo  
-**Storage**: N/A  
-**Testing**: Vitest  
-**Target Platform**: Web  
-**Project Type**: Web application  
-**Performance Goals**: Throughput: small, Latency: <= 5 minutes  
-**Constraints**: Existing Next.js project structure  
+**Language/Version**: TypeScript, Node.js
+**Primary Dependencies**: @getbrevo/brevo
+**Storage**: N/A
+**Testing**: Vitest
+**Target Platform**: Web
+**Project Type**: Web application
+**Performance Goals**: Throughput: small, Latency: <= 5 minutes
+**Constraints**: Existing Next.js project structure
 **Scale/Scope**: Daily email volume <= 10
 
 ## Constitution Check
@@ -177,12 +177,12 @@ directories captured above]
 - Load `.specify/templates/tasks-template.md` as base
 - Generate tasks from Phase 1 design docs (contracts, data model, quickstart)
 - Each contract → contract test task [P]
-- Each entity → model creation task [P] 
+- Each entity → model creation task [P]
 - Each user story → integration test task
 - Implementation tasks to make tests pass
 
 **Ordering Strategy**:
-- TDD order: Tests before implementation 
+- TDD order: Tests before implementation
 - Dependency order: Models before services before UI
 - Mark [P] for parallel execution (independent files)
 
@@ -193,8 +193,8 @@ directories captured above]
 ## Phase 3+: Future Implementation
 *These phases are beyond the scope of the /plan command*
 
-**Phase 3**: Task execution (/tasks command creates tasks.md)  
-**Phase 4**: Implementation (execute tasks.md following constitutional principles)  
+**Phase 3**: Task execution (/tasks command creates tasks.md)
+**Phase 4**: Implementation (execute tasks.md following constitutional principles)
 **Phase 5**: Validation (run tests, execute quickstart.md, performance validation)
 
 ## Complexity Tracking

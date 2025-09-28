@@ -47,15 +47,7 @@
 ## Constitution Check
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-- **I. Implement Dark Mode**: Does the feature include a dark mode?
-- **II. Replace Resend with Brevo**: Does the feature use Brevo for emails?
-- **III. Strict Type Safety**: Does the code adhere to strict TypeScript types, avoiding `any`?
-- **IV. Separation of Concerns**: Is business logic properly isolated in libraries or hooks?
-- **V. Reusability and File Size**: Are components reusable and do all files remain under 500 lines?
-- **VI. Secure API Key Management**: Are all API/service keys kept on the backend, away from the client?
-- **VII. Immutable UI Component Base**: Are shadcn base components left unmodified, with changes in derived components?
-- **VIII. Standardized Component Scaffolding**: Are new shadcn components added only via the CLI?
-- **IX. Development Server Autonomy**: Does the agent avoid managing the dev server?
+[Gates determined based on constitution file]
 
 ## Project Structure
 
@@ -160,7 +152,7 @@ directories captured above]
    - Quickstart test = story validation steps
 
 5. **Update agent file incrementally** (O(1) operation):
-   - Run `.specify/scripts/bash/update-agent-context.sh gemini`
+   - Run `.specify/scripts/bash/update-agent-context.sh qwen`
      **IMPORTANT**: Execute it exactly as specified above. Do not add or remove any arguments.
    - If exists: Add only NEW tech from current plan
    - Preserve manual additions between markers
@@ -224,4 +216,4 @@ directories captured above]
 - [ ] Complexity deviations documented
 
 ---
-*Based on Constitution v0.4.0 - See `/memory/constitution.md`*
+*Based on Constitution v2.1.1 - See `/memory/constitution.md`*

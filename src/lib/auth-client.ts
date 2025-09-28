@@ -3,6 +3,7 @@ import { DEFAULT_LOGIN_REDIRECT } from "@/lib/config";
 import { adminClient } from "better-auth/client/plugins";
 
 export const authClient = createAuthClient({
+  baseURL: process.env.BETTER_AUTH_URL || "http://localhost:3000",
   plugins: [adminClient()],
 });
 

@@ -1,6 +1,6 @@
 # Feature Specification: Implement Dark Mode
 
-**Feature Branch**: `001-implementiere-dark-mode`
+**Feature Branch**: `001-implement-dark-mode`
 **Created**: 2025-09-28
 **Status**: Draft
 **Input**: User description: "Implementiere Dark Mode. Dark Mode soll umgeschaltet werden in der NAV-Bar, nicht mittels eines Menü-Eintrags, sondern mit einem einfachen Sonne-Mond Toggle-Button. Dark Mode gehört zum UI-Application-State. Dieser Application-State sollte in einem Zustand Store abrufbar sein, und der Dark Mode muss im Local Storage persistiert werden, so dass nach einem Refresh die Nutzer-Einstellungen wieder vorhanden sind."

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { MoveRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { Link } from "@/i18n/routing";
 
 function Hero() {
   const [titleNumber, setTitleNumber] = useState(0);
@@ -86,7 +87,7 @@ function Hero() {
           </div>
           <div className="flex flex-row gap-3">
             <Button size="lg" className="gap-4" variant="outline" asChild>
-              <a href="/dashboard">View Demo</a>
+              <Link href="/dashboard">View Demo</Link>
             </Button>
             <Button size="lg" className="gap-4" asChild>
               <a

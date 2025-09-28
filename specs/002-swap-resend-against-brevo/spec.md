@@ -1,6 +1,6 @@
 # Feature Specification: Replace Resend with Brevo for Email Service
 
-**Feature Branch**: `002-ich-m-chte`
+**Feature Branch**: `002-swap-resend-against-brevo`
 **Created**: 2025-09-28
 **Status**: Draft
 **Input**: User description: "Ich möchte die Resend Library durch die Brevo Library austauschen und den kompletten E-Mail-Verkehr nur noch über Brevo abwickeln."

@@ -1,9 +1,6 @@
-import "./globals.css";
 import type { Metadata } from "next";
-import { Toaster } from "react-hot-toast";
 import { Inter } from "next/font/google";
-import { ThemeProvider } from "@/components/ui/ThemeProvider";
-import Navbar from "@/components/landing/navbar";
+import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -21,13 +18,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} antialiased bg-background`}>
-        <ThemeProvider>
-          <Navbar />
-          {children}
-        </ThemeProvider>{" "}
-        <Toaster />
+    <html suppressHydrationWarning>
+      <body className={`${inter.variable} antialiased bg-background`} suppressHydrationWarning>
+        {children}
       </body>
     </html>
   );

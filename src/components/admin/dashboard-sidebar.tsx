@@ -1,8 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { Link, usePathname, useRouter } from "@/i18n/routing";
 import { Users, Settings, LogOut, GalleryVerticalEnd } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 

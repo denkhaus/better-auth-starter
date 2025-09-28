@@ -2,7 +2,7 @@
 
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,6 +17,7 @@ import { LogOut, Shield, User } from "lucide-react";
 import Image from "next/image";
 
 import { ThemeToggle } from "../ui/ThemeToggle";
+import LanguageToggle from "../language-toggle";
 
 const Navbar = () => {
   const { signOut, useSession } = authClient;
@@ -56,6 +57,7 @@ const Navbar = () => {
 
         {/* Right Side */}
         <div className="flex items-center gap-4">
+          <LanguageToggle />
           <ThemeToggle />
           {!session ? (
             <div className="flex items-center gap-2">

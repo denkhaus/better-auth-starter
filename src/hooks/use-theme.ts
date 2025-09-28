@@ -41,7 +41,7 @@ export function useTheme() {
   const handleSetTheme = (newTheme: 'light' | 'dark') => {
     try {
       localStorage.setItem(THEME_KEY, newTheme);
-    } catch (e) {
+    } catch {
       setCookie(THEME_KEY, newTheme, 365);
     }
     setTheme(newTheme);

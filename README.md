@@ -23,6 +23,14 @@ A modern, production-ready Next.js boilerplate with comprehensive authentication
 - **User Actions** - Delete users, revoke sessions
 - **Responsive Admin UI** with modern design
 
+### 🌍 Internationalization (i18n)
+- **Multi-language Support** with German (default) and English
+- **Locale Detection** via browser preferences and URL
+- **Translation Management** using next-intl with JSON files
+- **Language Toggle** component with [DE|EN] UI
+- **Better-Auth Integration** with internationalized auth components
+- **Persistent Language Preferences** using local storage
+
 ### 🎨 UI/UX
 - **Modern Design System** with Tailwind CSS
 - **Responsive Layout** for all devices
@@ -34,6 +42,7 @@ A modern, production-ready Next.js boilerplate with comprehensive authentication
 
 - **Framework:** Next.js 15 with App Router
 - **Authentication:** Better Auth
+- **Internationalization:** next-intl
 - **Database:** PostgreSQL with Drizzle ORM
 - **Styling:** Tailwind CSS
 - **UI Components:** Radix UI
@@ -51,6 +60,23 @@ This project has migrated its email service from Resend to Brevo. If you were pr
   - `RESEND_API_KEY` is no longer used.
   - New environment variables `BREVO_API_KEY` and `BREVO_SENDER_EMAIL` are required for Brevo configuration. Please update your `.env.local` file accordingly.
 - **Codebase Changes**: All email sending logic has been refactored to use the Brevo SDK. Refer to `src/lib/email.ts` for implementation details.
+
+## 🌍 Internationalization Setup
+
+The application supports multiple languages with the following configuration:
+
+1. **Supported Languages:** English (en) and German (de)
+2. **Default Language:** German (de)
+3. **Translation Files:** Located in `public/locales/`
+4. **Language Switching:** Implemented with next-intl and a toggle component
+5. **URL Structure:** Language codes are included in the URL (e.g., `/en`, `/de`)
+
+### Adding New Languages
+
+To add additional languages:
+1. Create a new translation JSON file in `public/locales/` (e.g., `fr.json` for French)
+2. Add the locale to the configuration in `src/i18n/routing.ts`
+3. Update the Language Toggle component if needed
 
 ## 🚀 Quick Start
 
@@ -100,6 +126,7 @@ Visit `http://localhost:3000` to see your application!
 ```
 src/
 ├── app/                    # Next.js App Router
+│   ├── [locale]/          # Internationalized app routes
 │   ├── admin/             # Admin dashboard pages
 │   ├── api/               # API routes
 │   ├── auth/              # Authentication pages
@@ -111,7 +138,9 @@ src/
 │   └── ui/               # Reusable UI components
 ├── db/                   # Database configuration
 ├── lib/                  # Utility libraries
+├── services/             # Business logic services
 └── utils/                # Helper functions
+└── i18n/                 # Internationalization configuration
 ```
 
 ## 🔧 Available Scripts
@@ -131,6 +160,12 @@ src/
 1. **Registration:** Users sign up with email/password
 2. **Email Verification:** Automated email verification process
 3. **Login:** Secure session-based authentication
+
+### Internationalization Flow
+1. **Locale Detection:** URL-based locale detection with middleware
+2. **Translation Loading:** Dynamic loading of translation files
+3. **Language Switching:** Client-side locale switching with state persistence
+4. **Component Integration:** Better-Auth components with internationalized labels
 
 ### Admin Features
 - **User Management:** Full CRUD operations on user accounts
