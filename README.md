@@ -1,8 +1,8 @@
 # Zexa Auth Starter
 
-A modern, production-ready Next.js boilerplate with comprehensive authentication, admin dashboard, and user management features. Built by Zexa for rapid application development.
+A modern, production-ready Next.js boilerplate with comprehensive authentication, admin dashboard, and user management features. This enhanced version builds upon the robust foundation provided by Zexa, incorporating several new features for an even more powerful and flexible development experience.
 
-## ✨ Features
+## ✨ Key Features & Enhancements
 
 ### 🔐 Authentication
 - **Email & Password Authentication** with email verification
@@ -24,12 +24,13 @@ A modern, production-ready Next.js boilerplate with comprehensive authentication
 - **Responsive Admin UI** with modern design
 
 ### 🌍 Internationalization (i18n)
-- **Multi-language Support** with German (default) and English
-- **Locale Detection** via browser preferences and URL
-- **Translation Management** using next-intl with JSON files
-- **Language Toggle** component with [DE|EN] UI
-- **Better-Auth Integration** with internationalized auth components
-- **Persistent Language Preferences** using local storage
+This template offers comprehensive internationalization support, making it easy to adapt your application for a global audience.
+- **Multi-language Support** with German (default), English, and French. Easily extendable to other languages.
+- **Locale Detection** via browser preferences and URL, ensuring a seamless user experience.
+- **Translation Management** using [`next-intl`](https://next-intl-docs.vercel.app/) with JSON files for organized and efficient translations.
+- **Language Toggle** component with [DE|EN|FR] UI for user-friendly language switching.
+- **Better-Auth Integration** with internationalized authentication components.
+- **Persistent Language Preferences** using local storage to remember user choices.
 
 ### 🎨 UI/UX
 - **Modern Design System** with Tailwind CSS
@@ -37,6 +38,16 @@ A modern, production-ready Next.js boilerplate with comprehensive authentication
 - **Component Library** with Radix UI primitives
 - **Form Validation** with React Hook Form + Zod
 - **Toast Notifications** for user feedback
+
+### 🌙 Dark Mode
+A sleek and user-friendly dark mode has been integrated, providing a comfortable viewing experience in low-light conditions and reducing eye strain. The theme can be toggled by the user and respects system preferences.
+
+### 🚀 Optimized Session Handling
+Enhanced session management provides a more robust and secure user experience, with optimized token handling and improved session revocation mechanisms.
+
+### 👤 User Management Enhancements
+- **Initial Admin User:** The first user registered in the database is automatically assigned administrative privileges, streamlining initial setup.
+- **Comprehensive User Actions:** Advanced features for banning, unbanning, and revoking user sessions, giving you full control over user accounts.
 
 ## 🛠️ Tech Stack
 
@@ -48,7 +59,7 @@ A modern, production-ready Next.js boilerplate with comprehensive authentication
 - **UI Components:** Radix UI
 - **Form Handling:** React Hook Form
 - **Validation:** Zod
-- **Email:** Brevo
+- **Email Service:** Brevo (formerly Sendinblue) for reliable transactional email delivery.
 - **TypeScript:** Full type safety
 
 ## 📧 Email Service Migration (Resend to Brevo)
@@ -56,7 +67,7 @@ A modern, production-ready Next.js boilerplate with comprehensive authentication
 This project has migrated its email service from Resend to Brevo. If you were previously using Resend, please note the following changes:
 
 - **Dependency Change**: The `resend` package has been replaced with `@getbrevo/brevo`.
-- **Environment Variables**: 
+- **Environment Variables**:
   - `RESEND_API_KEY` is no longer used.
   - New environment variables `BREVO_API_KEY` and `BREVO_SENDER_EMAIL` are required for Brevo configuration. Please update your `.env.local` file accordingly.
 - **Codebase Changes**: All email sending logic has been refactored to use the Brevo SDK. Refer to `src/lib/email.ts` for implementation details.
@@ -65,7 +76,7 @@ This project has migrated its email service from Resend to Brevo. If you were pr
 
 The application supports multiple languages with the following configuration:
 
-1. **Supported Languages:** English (en) and German (de)
+1. **Supported Languages:** English (en), German (de), and French (fr).
 2. **Default Language:** German (de)
 3. **Translation Files:** Located in `public/locales/`
 4. **Language Switching:** Implemented with next-intl and a toggle component
@@ -82,7 +93,7 @@ To add additional languages:
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - PostgreSQL database
 - Brevo account (for email functionality)
 
@@ -197,6 +208,6 @@ For support and questions:
 
 ---
 
-**Built with ❤️ by Zexa**
+**Built with ❤️ by Zexa & Denkhaus**
 
 Ready to build something amazing? Get started with Zexa Auth Starter today!
