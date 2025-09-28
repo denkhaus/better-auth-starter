@@ -1,8 +1,8 @@
 # Feature Specification: Implement Internationalization with Next-intl
 
-**Feature Branch**: `003-ich-m-chte`  
-**Created**: 2025-09-28  
-**Status**: Draft  
+**Feature Branch**: `003-add-i18n-with-next-intl`
+**Created**: 2025-09-28
+**Status**: Draft
 **Input**: User description: "Ich möchte im Internationalisierung implementieren mit der Next-intl Library. Die Sprachen sollen englisch und deutsch sein, wobei deutsch die Default-Sprache ist. Sorge auch dafür, dass alle Better-Auth-Komponenten mehrsprachig implementiert sind. Vermerke das neue Feature Internationalisierung in zwei Sprachen auf der Startseite, sowie in der Readme."
 
 ## Execution Flow (main)
@@ -44,7 +44,7 @@ When creating this spec from a user prompt:
 3. **Think like a tester**: Every vague requirement should fail the "testable and unambiguous" checklist item
 4. **Common underspecified areas**:
    - User types and permissions
-   - Data retention/deletion policies  
+   - Data retention/deletion policies
    - Performance targets and scale
    - Error handling behaviors
    - Integration requirements
@@ -112,7 +112,7 @@ N/A
 
 ### Requirement Completeness
 - [X] No [NEEDS CLARIFICATION] markers remain
-- [X] Requirements are testable and unambiguous  
+- [X] Requirements are testable and unambiguous
 - [X] Success criteria are measurable
 - [X] Scope is clearly bounded
 - [X] Dependencies and assumptions identified

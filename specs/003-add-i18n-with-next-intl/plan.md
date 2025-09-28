@@ -1,8 +1,8 @@
 
 # Implementation Plan: Internationalization with Next-intl
 
-**Branch**: `003-ich-m-chte` | **Date**: 2025-09-28 | **Spec**: [specs/003-ich-m-chte/spec.md](/specs/003-ich-m-chte/spec.md)
-**Input**: Feature specification from `/specs/003-ich-m-chte/spec.md`
+**Branch**: `003-add-i18n-with-next-intl` | **Date**: 2025-09-28 | **Spec**: [specs/003-add-i18n-with-next-intl/spec.md](/specs/003-add-i18n-with-next-intl/spec.md)
+**Input**: Feature specification from `/specs/003-add-i18n-with-next-intl/spec.md`
 
 ## Execution Flow (/plan command scope)
 ```
@@ -34,12 +34,12 @@
 This plan implements internationalization for a Next.js application using the next-intl library. The implementation will support German (default) and English languages, with a toggle UI for users to switch between languages. The solution will include proper fallback mechanisms for missing translations, locale-specific formatting for dates and numbers, and internationalization of Better-Auth components.
 
 ## Technical Context
-**Language/Version**: TypeScript 5.x, React 19, Next.js 15.3.2  
-**Primary Dependencies**: next-intl, Better Auth, React, Next.js  
-**Storage**: Local storage for language preferences  
-**Testing**: Vitest, React Testing Library  
+**Language/Version**: TypeScript 5.x, React 19, Next.js 15.3.2
+**Primary Dependencies**: next-intl, Better Auth, React, Next.js
+**Storage**: Local storage for language preferences
+**Testing**: Vitest, React Testing Library
 **Target Platform**: Web application (SSR/Client components)
-**Project Type**: Web application (frontend Next.js app with authentication)  
+**Project Type**: Web application (frontend Next.js app with authentication)
 **Performance Goals**: Minimal impact on page load times, efficient client-side language switching
 **Constraints**: Must maintain compatibility with existing Better-Auth components, preserve accessibility features
 **Scale/Scope**: Support for 2 languages (de/en) with potential for future expansion
@@ -58,7 +58,7 @@ Based on the constitution document:
 
 ### Documentation (this feature)
 ```
-specs/003-ich-m-chte/
+specs/add-i18n-with-next-intl/
 ├── plan.md              # This file (/plan command output)
 ├── research.md          # Phase 0 output (/plan command)
 ├── data-model.md        # Phase 1 output (/plan command)
@@ -166,12 +166,12 @@ tests/
 - Load `.specify/templates/tasks-template.md` as base
 - Generate tasks from Phase 1 design docs (contracts, data model, quickstart)
 - Each contract → contract test task [P]
-- Each entity → configuration task [P] 
+- Each entity → configuration task [P]
 - Each user story → integration test task
 - Implementation tasks to make tests pass
 
 **Ordering Strategy**:
-- TDD order: Tests before implementation 
+- TDD order: Tests before implementation
 - Dependency order: Configuration before components before UI
 - Mark [P] for parallel execution (independent files)
 
@@ -182,8 +182,8 @@ tests/
 ## Phase 3+: Future Implementation
 *These phases are beyond the scope of the /plan command*
 
-**Phase 3**: Task execution (/tasks command creates tasks.md)  
-**Phase 4**: Implementation (execute tasks.md following constitutional principles)  
+**Phase 3**: Task execution (/tasks command creates tasks.md)
+**Phase 4**: Implementation (execute tasks.md following constitutional principles)
 **Phase 5**: Validation (run tests, execute quickstart.md, performance validation)
 
 ## Complexity Tracking

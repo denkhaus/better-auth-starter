@@ -1,6 +1,6 @@
 # Tasks: Internationalization with Next-intl
 
-**Input**: Design documents from `/specs/003-ich-m-chte/`
+**Input**: Design documents from `/specs/003-add-i18n-with-next-intl/`
 **Prerequisites**: plan.md (required), research.md, data-model.md, contracts/
 
 ## Execution Flow (main)
@@ -129,11 +129,11 @@ Task: "Unit tests for translation fallback logic in tests/unit/test_fallback_log
 1. **From Contracts**:
    - Each contract file → contract test task [P]
    - Each endpoint → implementation task
-   
+
 2. **From Data Model**:
    - Each entity → model creation task [P]
    - Relationships → service layer tasks
-   
+
 3. **From User Stories**:
    - Each story → integration test [P]
    - Quickstart scenarios → validation tasks
