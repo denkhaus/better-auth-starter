@@ -1,6 +1,7 @@
-import { Resend } from "resend";
+import { TransactionalEmailsApi, SendSmtpEmail } from "@getbrevo/brevo";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const emailAPI = new TransactionalEmailsApi();
+(emailAPI as any).authentications.apiKey.apiKey = process.env.BREVO_API_KEY;
 
 export const sendEmail = async (payload: {
   to: string;
@@ -8,17 +9,23 @@ export const sendEmail = async (payload: {
   text: string;
 }) => {
   try {
-    const response = await resend.emails.send({
-      from: "Zexa Technologies <no-reply@zexa.app>",
-      ...payload,
-    });
+    const message = new SendSmtpEmail();
+    message.subject = payload.subject;
+    message.textContent = payload.text;
+    message.sender = {
+      name: "Better Auth",
+      email: process.env.BREVO_SENDER_EMAIL || "no-reply@example.com",
+    };
+    message.to = [{ email: payload.to }];
+
+    const response = await emailAPI.sendTransacEmail(message);
 
     console.log("Email sent successfully:", response);
 
-    if (response?.data) return true;
+    if (response?.body) return true;
     return false;
   } catch (error: any) {
-    console.error("Error sending email:", error);
+    console.error("Error sending email:", error.body);
     return false;
   }
 };

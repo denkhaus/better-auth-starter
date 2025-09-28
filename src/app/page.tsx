@@ -69,6 +69,7 @@ const HomePage = () => {
     "TypeScript",
     "React Hook Form",
     "Zod",
+    "Brevo",
   ];
 
   return (

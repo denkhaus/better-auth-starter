@@ -42,13 +42,23 @@ A modern, production-ready Next.js boilerplate with comprehensive authentication
 - **Email:** Brevo
 - **TypeScript:** Full type safety
 
+## 📧 Email Service Migration (Resend to Brevo)
+
+This project has migrated its email service from Resend to Brevo. If you were previously using Resend, please note the following changes:
+
+- **Dependency Change**: The `resend` package has been replaced with `@getbrevo/brevo`.
+- **Environment Variables**: 
+  - `RESEND_API_KEY` is no longer used.
+  - New environment variables `BREVO_API_KEY` and `BREVO_SENDER_EMAIL` are required for Brevo configuration. Please update your `.env.local` file accordingly.
+- **Codebase Changes**: All email sending logic has been refactored to use the Brevo SDK. Refer to `src/lib/email.ts` for implementation details.
+
 ## 🚀 Quick Start
 
 ### Prerequisites
 
 - Node.js 18+ 
 - PostgreSQL database
-- Resend account (for email functionality)
+- Brevo account (for email functionality)
 
 ### Installation
 
