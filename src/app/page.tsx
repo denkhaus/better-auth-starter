@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "@/components/landing/navbar";
 import {
   Card,
   CardContent,
@@ -74,8 +73,6 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
-
       <div className="container mx-auto px-4 py-8 max-w-6xl">
         {/* Hero Section */}
         <Hero />

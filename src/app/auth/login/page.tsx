@@ -6,18 +6,11 @@ import LoginForm from "@/components/auth/login-form";
 import { Card, CardContent } from "@/components/ui/card";
 import { GoogleIcon, GithubIcon } from "@/components/ui/icons";
 import { signInWithGithub, signInWithGoogle } from "@/lib/auth-client";
-import { GalleryVerticalEnd } from "lucide-react";
 
 const LoginPage = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-neutral-100">
+    <div className="flex min-h-screen items-center justify-center">
       <div className="flex flex-col items-center w-full max-w-md gap-6">
-        <a href="#" className="flex items-center gap-2 self-center font-medium">
-          <div className="flex h-6 w-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
-            <GalleryVerticalEnd className="size-4" />
-          </div>
-          Zexa Better Auth
-        </a>
         <Card className="w-full">
           <CardContent className="flex flex-col gap-4 pt-6">
             <LoginForm />
