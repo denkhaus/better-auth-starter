@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
 import { UsersTable } from "@/components/admin/users-table";
+import { getTranslations } from "next-intl/server";
 
-export const metadata: Metadata = {
-  title: "Users | Admin Dashboard",
-  description: "Manage users in the admin dashboard",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("admin.users");
+
+  return {
+    title: t("title"),
+    description: t("description"),
+  };
+}
 
 export default function UsersPage() {
   return (

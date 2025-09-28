@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { unbanUser } from "@/utils/auth";
 import { UserWithDetails } from "@/utils/users";
 import { ConfirmationDialog } from "@/components/ui/confirmation-dialog";
+import { useTranslations } from "next-intl";
 
 interface UserUnbanDialogProps {
   user: UserWithDetails;
@@ -17,13 +18,16 @@ export function UserUnbanDialog({
   isOpen,
   onClose,
 }: UserUnbanDialogProps) {
+  const t = useTranslations("admin.users.unban_dialog");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleUnbanUser = async () => {
     try {
       setIsLoading(true);
       await unbanUser(user.id);
-      toast.success(`${user.name || user.email} has been unbanned.`);
+      toast.success(
+        t("success_message", { userName: user.name || user.email })
+      );
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message);
@@ -38,9 +42,9 @@ export function UserUnbanDialog({
       isOpen={isOpen}
       onClose={onClose}
       onConfirm={handleUnbanUser}
-      title={`Unban User: ${user.name || user.email}`}
-      description="This will restore the user's access to the platform."
-      confirmText={isLoading ? "Processing..." : "Unban User"}
+      title={t("title", { userName: user.name || user.email })}
+      description={t("description")}
+      confirmText={isLoading ? t("processing") : t("unban_user")}
     />
   );
 }

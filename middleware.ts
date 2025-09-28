@@ -1,9 +1,9 @@
-import createIntlMiddleware from 'next-intl/middleware';
-import { type NextRequest } from 'next/server';
-import { isPublicPath } from '@/lib/public-paths';
-import { DEFAULT_LOGIN_REDIRECT, getLocaleRedirectPath } from '@/lib/config';
-import { getSessionCookie } from 'better-auth/cookies';
-import { localeConfig } from '@/lib/locale-config';
+import createIntlMiddleware from "next-intl/middleware";
+import { type NextRequest, NextResponse } from "next/server"; // Import NextResponse
+import { isPublicPath } from "@/lib/public-paths";
+import { DEFAULT_LOGIN_REDIRECT, getLocaleRedirectPath } from "@/lib/config";
+import { getSessionCookie } from "better-auth/cookies";
+import { localeConfig } from "@/lib/locale-config";
 
 // Create the internationalization middleware
 const intlMiddleware = createIntlMiddleware({
@@ -24,7 +24,7 @@ function getPathWithoutLocale(pathname: string): string {
   // If the pathname is exactly a locale (like /en or /de), return /
   for (const locale of locales) {
     if (pathname === `/${locale}`) {
-      return '/';
+      return "/";
     }
   }
   return pathname;
@@ -32,6 +32,11 @@ function getPathWithoutLocale(pathname: string): string {
 
 export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  // IMPORTANT: Skip internationalization for API routes
+  if (pathname.startsWith("/api")) {
+    return NextResponse.next(); // Bypass intlMiddleware for API routes
+  }
 
   // First, handle internationalization
   const intlResponse = intlMiddleware(request);
@@ -43,8 +48,8 @@ export default async function middleware(request: NextRequest) {
   const sessionCookie = getSessionCookie(request);
 
   // If user is already logged in and trying to access auth pages, redirect to dashboard
-  if (sessionCookie && pathWithoutLocale.includes('/auth/')) {
-    const locale = pathname.split('/')[1]; // Get the locale from the path
+  if (sessionCookie && pathWithoutLocale.includes("/auth/")) {
+    const locale = pathname.split("/")[1]; // Get the locale from the path
     const redirectPath = getLocaleRedirectPath(locale, DEFAULT_LOGIN_REDIRECT);
     return Response.redirect(new URL(redirectPath, request.url));
   }
@@ -57,9 +62,9 @@ export default async function middleware(request: NextRequest) {
   // For protected paths, check authentication
   if (!sessionCookie) {
     // Redirect to login with a return URL to the requested page
-    const locale = pathname.split('/')[1]; // Get the locale from the path
+    const locale = pathname.split("/")[1]; // Get the locale from the path
     const loginUrl = new URL(`/${locale}/auth/login`, request.url);
-    loginUrl.searchParams.set('callbackUrl', pathWithoutLocale);
+    loginUrl.searchParams.set("callbackUrl", pathWithoutLocale);
     return Response.redirect(loginUrl);
   }
 
@@ -70,6 +75,6 @@ export const config = {
   // Match all routes to handle both i18n and auth
   matcher: [
     // Skip all internal paths that should not be internationalized
-    '/((?!api|_next/static|_next/image|favicon.ico|.*\\.).*)',
+    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.).*)", // Revert to original matcher
   ],
 };

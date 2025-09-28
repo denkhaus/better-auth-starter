@@ -19,9 +19,12 @@ import Image from "next/image";
 import { ThemeToggle } from "../ui/ThemeToggle";
 import LanguageToggle from "../language-toggle";
 
-const Navbar = () => {
-  const { signOut, useSession } = authClient;
-  const { data: session } = useSession();
+type NavbarProps = {
+  session: any; // Define session prop type
+};
+
+const Navbar = ({ session }: NavbarProps) => {
+  const { signOut } = authClient;
 
   const isAdmin = session?.user?.role === "admin";
 

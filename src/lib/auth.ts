@@ -14,6 +14,12 @@ export const auth = betterAuth({
       user: schema.user,
     },
   }),
+  session: {
+    cookieCache: {
+      enabled: true,
+      maxAge: 5 * 60, // 5 minutes
+    },
+  },
   account: {
     accountLinking: {
       enabled: true,
@@ -21,7 +27,7 @@ export const auth = betterAuth({
   },
   emailAndPassword: {
     enabled: true,
-    requireEmailVerification: process.env.NODE_ENV === 'production',
+    requireEmailVerification: process.env.NODE_ENV === "production",
     resetPasswordTokenExpiresIn: 60 * 60, // 1 hour
   },
   emailVerification: {
@@ -32,7 +38,7 @@ export const auth = betterAuth({
         text: `Click the link to verify your email: ${url}`,
       });
     },
-    sendOnSignUp: process.env.NODE_ENV === 'production',
+    sendOnSignUp: process.env.NODE_ENV === "production",
     autoSignInAfterVerification: true,
   },
   socialProviders: {

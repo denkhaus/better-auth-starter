@@ -16,6 +16,7 @@ import useSWR from "swr";
 import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 import {
   Table,
@@ -74,6 +75,7 @@ const getAccountIcon = (account: string) => {
 export function UsersTable() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const t = useTranslations("admin.users");
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
 
   // Filters and sort state, initialized from URL
@@ -130,7 +132,7 @@ export function UsersTable() {
           <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <input
             type="text"
-            placeholder="Search email..."
+            placeholder={t("search_email")}
             className="pl-8 pr-2 py-2 border rounded-md text-sm bg-background w-[200px]"
             value={email}
             onChange={(e) => {
@@ -156,28 +158,26 @@ export function UsersTable() {
               ) : (
                 <User className="w-4 h-4" />
               )}
-              {role === "all"
-                ? "All Roles"
-                : role.charAt(0).toUpperCase() + role.slice(1)}
+              {role === "all" ? t("all_roles") : t(`${role}_role`)}
             </span>
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">
               <span className="flex items-center gap-2">
                 <Users className="w-4 h-4" />
-                All Roles
+                {t("all_roles")}
               </span>
             </SelectItem>
             <SelectItem value="admin">
               <span className="flex items-center gap-2">
                 <Shield className="w-4 h-4" />
-                Admin
+                {t("admin_role")}
               </span>
             </SelectItem>
             <SelectItem value="user">
               <span className="flex items-center gap-2">
                 <User className="w-4 h-4" />
-                User
+                {t("user_role")}
               </span>
             </SelectItem>
           </SelectContent>
@@ -188,12 +188,12 @@ export function UsersTable() {
         onClick={() => setIsAddDialogOpen(true)}
       >
         <UserPlus className="h-4 w-4" />
-        Add a user
+        {t("add_user")}
       </button>
     </div>
   );
 
-  if (error) return <div>Failed to load users</div>;
+  if (error) return <div>{t("failed_to_load_users")}</div>;
   if (!data)
     return (
       <div className="space-y-4 border-accent-foreground">
@@ -203,14 +203,14 @@ export function UsersTable() {
             <TableHeader>
               <TableRow>
                 {[
-                  { label: "Name" },
-                  { label: "Verification" },
-                  { label: "Linked Accounts" },
-                  { label: "Role" },
-                  { label: "Status" },
-                  { label: "Last Sign In" },
-                  { label: "Created At" },
-                  { label: "Actions", className: "w-[80px]" },
+                  { label: t("table_name") },
+                  { label: t("table_verification") },
+                  { label: t("table_linked_accounts") },
+                  { label: t("table_role") },
+                  { label: t("table_status") },
+                  { label: t("table_last_sign_in") },
+                  { label: t("table_created_at") },
+                  { label: t("table_actions"), className: "w-[80px]" },
                 ].map((col) => (
                   <TableHead
                     key={col.label}
@@ -349,14 +349,14 @@ export function UsersTable() {
           <TableHeader className="bg-muted sticky top-0 z-10">
             <TableRow>
               {[
-                { label: "Name" },
-                { label: "Verification" },
-                { label: "Linked Accounts" },
-                { label: "Role" },
-                { label: "Status" },
-                { label: "Last Sign In" },
-                { label: "Created At" },
-                { label: "Actions", className: "w-[80px]" },
+                { label: t("table_name") },
+                { label: t("table_verification") },
+                { label: t("table_linked_accounts") },
+                { label: t("table_role") },
+                { label: t("table_status") },
+                { label: t("table_last_sign_in") },
+                { label: t("table_created_at") },
+                { label: t("table_actions"), className: "w-[80px]" },
               ].map((col) => (
                 <TableHead
                   key={col.label}
@@ -425,7 +425,7 @@ export function UsersTable() {
                           </span>
                           <span className="text-xs text-muted-foreground">
                             {user.email.replace(/^[^@]+/, (match) =>
-                              "*".repeat(match.length),
+                              "*".repeat(match.length)
                             )}
                           </span>
                         </div>
@@ -438,7 +438,7 @@ export function UsersTable() {
                           className="bg-green-50 text-green-700 border-green-200 dark:bg-green-900 dark:text-green-200 dark:border-green-700 flex items-center gap-1 px-2 py-1 text-xs"
                         >
                           <CheckCircle className="h-3 w-3" />
-                          Verified
+                          {t("verified")}
                         </Badge>
                       ) : (
                         <Badge
@@ -446,7 +446,7 @@ export function UsersTable() {
                           className="bg-yellow-50 text-yellow-700 border-yellow-200 dark:bg-yellow-900 dark:text-yellow-200 dark:border-yellow-700 flex items-center gap-1 px-2 py-1 text-xs"
                         >
                           <XCircle className="h-3 w-3" />
-                          Unverified
+                          {t("unverified")}
                         </Badge>
                       )}
                     </TableCell>
@@ -477,10 +477,7 @@ export function UsersTable() {
                         ) : (
                           <User className="h-3 w-3" />
                         )}
-                        {user.role
-                          ? user.role.charAt(0).toUpperCase() +
-                            user.role.slice(1)
-                          : "User"}
+                        {t(`${user.role}_role`)}
                       </Badge>
                     </TableCell>
                     <TableCell className="px-4 py-3">
@@ -493,18 +490,19 @@ export function UsersTable() {
                                 className="flex items-center gap-1 px-2 py-1 text-xs cursor-help"
                               >
                                 <Ban className="h-3 w-3" />
-                                Banned
+                                {t("banned")}
                               </Badge>
                             </TooltipTrigger>
                             {user.banReason && (
                               <TooltipContent>
-                                Reason: {user.banReason}
+                                {t("reason")}: {user.banReason}
                               </TooltipContent>
                             )}
                           </Tooltip>
                           {user.banExpires && (
                             <span className="text-xs text-muted-foreground">
-                              Expires: {format(user.banExpires, "MMM d, yyyy")}
+                              {t("expires")}:{" "}
+                              {format(user.banExpires, "MMM d, yyyy")}
                             </span>
                           )}
                         </div>
@@ -514,14 +512,14 @@ export function UsersTable() {
                           className="bg-green-50 text-green-700 border-green-200 dark:bg-green-900 dark:text-green-200 dark:border-green-700 flex items-center gap-1 px-2 py-1 text-xs"
                         >
                           <Check className="h-3 w-3" />
-                          Active
+                          {t("active")}
                         </Badge>
                       )}
                     </TableCell>
                     <TableCell className="px-4 py-3 text-xs text-muted-foreground">
                       {user.lastSignIn
                         ? format(user.lastSignIn, "MMM d, yyyy 'at' h:mm a")
-                        : "Never"}
+                        : t("never")}
                     </TableCell>
                     <TableCell className="px-4 py-3 text-xs text-muted-foreground">
                       {format(user.createdAt, "MMM d, yyyy 'at' h:mm a")}
@@ -539,7 +537,7 @@ export function UsersTable() {
       </div>
       <div className="flex items-center justify-between px-4 py-1">
         <div className="text-sm text-muted-foreground">
-          Showing {users.length} of {total} users
+          {t("showing_users", { count: users.length, total })}
         </div>
         {renderPagination()}
       </div>

@@ -13,6 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useTranslations } from "next-intl";
 
 interface UserRoleDialogProps {
   user: UserWithDetails;
@@ -20,20 +21,21 @@ interface UserRoleDialogProps {
   onClose: () => void;
 }
 
-const ROLE_OPTIONS = [
-  { label: "User", value: "user" },
-  { label: "Admin", value: "admin" },
-];
-
 export function UserRoleDialog({ user, isOpen, onClose }: UserRoleDialogProps) {
+  const t = useTranslations("admin.users.role_dialog");
   const [selectedRole, setSelectedRole] = useState(user.role || "user");
   const [isLoading, setIsLoading] = useState(false);
+
+  const ROLE_OPTIONS = [
+    { label: t("user"), value: "user" },
+    { label: t("admin"), value: "admin" },
+  ];
 
   const handleUpdateRole = async () => {
     try {
       setIsLoading(true);
       await updateUserRole(user.id, selectedRole);
-      toast.success(`User role updated to ${selectedRole}`);
+      toast.success(t("success_message", { role: selectedRole }));
       onClose();
     } catch (error) {
       if (error instanceof Error) {
@@ -49,16 +51,16 @@ export function UserRoleDialog({ user, isOpen, onClose }: UserRoleDialogProps) {
       isOpen={isOpen}
       onClose={onClose}
       onConfirm={handleUpdateRole}
-      title={`Update Role: ${user.name || user.email}`}
-      description="Change the user's role in the system."
-      confirmText={isLoading ? "Processing..." : "Update Role"}
+      title={t("title", { userName: user.name || user.email })}
+      description={t("description")}
+      confirmText={isLoading ? t("processing") : t("update_role")}
     >
       <div className="grid gap-4 py-4">
         <div className="grid gap-2">
-          <Label htmlFor="role">Select Role</Label>
+          <Label htmlFor="role">{t("select_role")}</Label>
           <Select value={selectedRole} onValueChange={setSelectedRole}>
             <SelectTrigger id="role" className="w-full">
-              <SelectValue placeholder="Select role" />
+              <SelectValue placeholder={t("select_role")} />
             </SelectTrigger>
             <SelectContent>
               {ROLE_OPTIONS.map((option) => (
